@@ -1,0 +1,204 @@
+@charset "utf8";
+body {
+	margin:0px;
+	padding:0px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#333;
+	background-color:##ffffcc;
+ 	font-size: 11px;
+	}
+
+a {color:#0c87af; text-decoration: none;}
+
+td {
+  font-size: 10pt;
+	padding: 10px;
+	margin: 0px;
+	background-color: #eed;
+}
+
+th {
+	padding: 5px 15px 5px 15px;
+	background-color: #eec;
+}
+
+.over {
+	background-color: #ee7;
+}
+
+#Header {
+	margin: 10px 10px 0px 10px;
+	height:50px;
+	border-top:1px solid #000;
+	border-right:1px solid #000;
+	border-left:1px solid #000;
+	background-color: #eee;
+	min-width: 98%x;
+}
+	
+#Header h1.title{
+	margin: 0px;
+	color:#09c;
+	font-family: Georgia;
+	font-size: 18pt;
+	font-weight: 800;
+	margin: 0px;
+	padding: 8px 10px 6px 30px;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+}
+
+#content {
+	margin: 0px 10px 0px 10px;
+	border:1px solid #000;
+	background-color: #fff;
+	min-width: 98%px;
+	overflow: auto;
+}
+
+#leftContent {
+	margin: 0px;
+	position: absolute;
+	left: 20px;
+	top: 73px;
+	min-height: 200px;
+	width: 195px;
+	border:1px dashed #000;
+	background-color: #eee;
+	padding: 10px;
+	font-size: 10px;
+}
+
+#leftContent span.t1 {
+	font-size: 12px;
+	font-weight: 800;
+}
+
+#leftContent ul, #leftContent ul li {list-style-type: disc !important;}
+#leftContent ul li {padding-bottom: 8px;}
+
+#centerContent {
+	background:#fff;
+	margin: 0px 0px 0px 227px;
+	min-height: 300px;
+	padding: 20px;
+}
+
+
+#formulario {
+	margin: 0px 0px 0px 227px;
+	position: absolute;
+	left: 20px;
+	top: 73px;
+	height: 200px;
+	width: 275px;
+	border:1px solid #000;
+	background-color: #fff;
+	padding: 4px;
+}
+
+#formulario span.descripcion {
+	font-size: 11px;
+	font-weight: 700;
+}
+
+#formulario span.information {
+	font-size: 10px;
+	font-weight: 650;
+}
+
+#formulario select {
+	margin: 0px 2px 0px 0px;
+	width: 140px;
+}
+
+#rightContent {
+	margin: 2px 5px 0px 283px;
+	height: 200px;
+	border:1px solid #000;
+	background-color: #fff;
+	padding: 4px;
+	overflow: auto;
+}
+
+#resultado {
+	background: #fff;
+	border: 1px solid #09c;
+	height: 155px;
+	width: 165px;
+	margin: 10px;
+	overflow: auto;
+	float: left;
+	clear: left;
+}
+
+#resultado ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#resultado a:link {
+	color: #333;
+}
+
+#resultado a:visited {
+	color: #666;
+}
+
+#resultado span.text{
+	font-size: 9px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bolder;
+	vertical-align: text-top;
+}
+
+#ItemResultado {
+	padding: 0px 0px 7px 15px;
+	margin: 0px;
+	background-image: url(./item1.png);
+	background-repeat: no-repeat;
+	background-position: 0% 18%;
+}
+
+#titleResultado {
+	background: #fff;
+	margin: 2px 0px 4px 12px;
+	float: left;
+	clear: left;	
+}
+
+#seleccion {
+	position: absolute;
+	margin: 20px 20px 0px 0px;
+	left: 737px;
+	background: #fff;
+	border: 0px;
+	height: 140px;
+	min-width: 155px;
+	padding: 10px;
+	overflow: auto;
+}
+
+#footer { 
+	height: 30px;
+	margin: 0px;
+	padding: 10px 0px 0px 30px;
+	color: #777;
+	background-color:#fff;
+	font-size: 9pt;
+	text-align: left; 
+	vertical-align: bottom;
+}
+
+#nofile {
+	font-family: Georgia;
+	font-size: 20px;
+}
+
+#tlogin {margin:20px;border:none;}
+#tlogin td {vertical-align: top;}
+#tlogin .tdleft {padding-right:6px;text-align: right;}
+
+.warningtxt {background-color: #fcf5cc; border:1px solid #ead748;}
