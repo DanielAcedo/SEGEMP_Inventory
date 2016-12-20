@@ -32,15 +32,15 @@
             $result = 0;
             $statement = $this->conn->query("SELECT username, password from user where username='$user'");
 
-            $filas = $statement->fetch(PDO::FETCH_ASSOC);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-            if($filas == false || is_null($filas)){
+            if($row == false || is_null($row)){
                 $result = 0;
             }
-            else if($filas['password'] == sha1($password)){
+            else if($row['password'] == sha1($password)){
                 $result = 1;
             }else{
-                echo $filas['password']." y ".sha1($password);
+                echo $row['password']." y ".sha1($password);
             }
 
             return $result;
