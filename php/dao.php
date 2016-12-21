@@ -1,8 +1,8 @@
 <?php
-    define("MYSQL_HOST", "mysql:dbname=Inventory;host=127.0.0.1");
+    define("DATABASE", "Inventory");
+    define("MYSQL_HOST", "mysql:dbname=".DATABASE.";host=127.0.0.1");
     define("MYSQL_USER", "www-data");
     define("MYSQL_PASSWORD", "www-data");
-    define("DATABASE", "inventory");
 
     //Se define el nombre de todas las tablas
     define ("TABLE_USER", 'user');
@@ -30,17 +30,18 @@
 
         public function checkUser($user, $password){
             $result = 0;
-            $statement = $this->conn->query("SELECT username, password from user where username='$user'");
+            
+            $statement = $this->conn->query("SELECT ".USER_NAME.", ".USER_PASSWORD." from ".TABLE_USER." where ".USER_NAME."='$user'");
 
             $row = $statement->fetch(PDO::FETCH_ASSOC);
 
             if($row == false || is_null($row)){
                 $result = 0;
             }
-            else if($row['password'] == sha1($password)){
+            else if($row[USER_PASSWORD] == sha1($password)){
                 $result = 1;
             }else{
-                echo $row['password']." y ".sha1($password);
+                echo $row[USER_PASSWORD]." y ".sha1($password);
             }
 
             return $result;

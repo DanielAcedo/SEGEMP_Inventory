@@ -45,7 +45,7 @@
                 //1.Create connection
 
                 //If we are not connected, show an error
-                if(is_null($app->getDao()->isConnected())){
+                if(!($app->getDao()->isConnected())){
                     echo '<p>'.$app->showErrorConnection().'</p>';
                 }
                 else{
