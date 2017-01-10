@@ -41,10 +41,6 @@ include_once 'dao.php';
 									if($currentPage=="index"){echo 'class="selected"';}
 								echo '>Principal</a></li>'; 
 
-								echo '<li><a href="../index.php" '; 
-									if($currentPage=="pagina1"){echo 'class="selected"';}
-								echo '>Principal</a></li>';
-
 								if($this->isLogged()){
 									echo '<li><a href="logout.php" '; 
 									echo '>Cerrar sesión</a></li>';
@@ -54,9 +50,15 @@ include_once 'dao.php';
     					</nav>
 
     					<nav id="secundaria">
-      						<ul>
-        						
-      						</ul>
+      						<ul>';
+        					if($currentPage == "inventory"){
+								echo '<li><a href="addproduct.php">Añadir producto</a></li>';
+							}
+
+							if($currentPage == "addproduct"){
+								echo '<li><a href="inventory.php">Inventario</a></li>';
+							}
+      						echo '</ul>
     					</nav>
     					<div id="content">';
 			}

@@ -6,10 +6,18 @@
 
     //Se define el nombre de todas las tablas
     define ("TABLE_USER", 'user');
+    define ("TABLE_PRODUCT", 'product');
+    define ("TABLE_TYPEPRODUCT", 'typeproduct');
 
     //Se define las columnas de las tablas
     define("USER_NAME", "username");
     define("USER_PASSWORD", "password");
+    define("PRODUCT_ID", "id");
+    define("PRODUCT_MODEL", "model");
+    define("PRODUCT_TYPEPRODUCT", "typeproduct");
+    define("PRODUCT_SERIAL", "serial");
+    define("TYPEPRODUCT_ID", "id");
+    define("TYPEPRODUCT_DESCRIPTION", "description");
 
     class InventoryDao{
         protected $conn;
@@ -19,8 +27,8 @@
 
         function __construct(){
             try{
-                $this->conn = new PDO(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD);
-                $this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                $this->conn = new PDO(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                //$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             }
             catch(PDOException $e){
                 $this->error = "Error en la conexión: ".$e.getMessage();
@@ -42,6 +50,17 @@
                 $result = 1;
             }else{
                 echo $row[USER_PASSWORD]." y ".sha1($password);
+            }
+
+            return $result;
+        }
+
+        public function executeSelect($sql){
+            $result = $this->conn->prepare($sql);
+            $result->execute();
+            
+            if(!$result){
+                $this->error = "Error en la consulta de datos";
             }
 
             return $result;
