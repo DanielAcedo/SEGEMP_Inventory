@@ -27,6 +27,7 @@
         echo "<table border='1'>";
         echo "<tr>";
 
+        //Draw header row
         for($i = 0; $i<$result->columnCount();$i++){
             $columnMeta = $result->getColumnMeta($i);
 
@@ -35,6 +36,7 @@
 
         echo "</tr>";
 
+        //Draw each product row
         for($i = 0; $i<count($products);$i++){
             $product = $products[$i];
             echo "<tr>";
@@ -42,10 +44,20 @@
             for($j = 0; $j<$result->columnCount();$j++){
                 $columnMeta = $result->getColumnMeta($j);
 
+                //If we are in typeproduct field, select name from respective table
                 if($columnMeta['name'] == PRODUCT_TYPEPRODUCT){
                     $sqlSt = "SELECT ".TYPEPRODUCT_DESCRIPTION." FROM ".TABLE_TYPEPRODUCT." WHERE ".TYPEPRODUCT_ID."=".$product[$j];
                     $statement = $app->getDao()->executeSelect($sqlSt);
-                    echo "<td>".$statement->fetch()[0]."</td>";
+                    $typeProductName = $statement->fetch();
+
+                    //If select statement has results, write the name
+                    if($typeProductName){
+                        echo "<td>".$typeProductName[0]."</td>";
+                    }else{
+                        echo "<td>-</td>";
+                    }
+
+                //If not, simply write the value
                 }else{
                     echo "<td>".$product[$j]."</td>";
                 }

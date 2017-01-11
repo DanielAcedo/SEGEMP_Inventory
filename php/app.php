@@ -125,6 +125,10 @@ include_once 'dao.php';
 		return $this->dao;
 	}
 
+	public function goToInventory(){
+		header("Location: inventory.php");
+	}
+
 	}
 
 ?>

@@ -15,7 +15,7 @@
     define("PRODUCT_ID", "id");
     define("PRODUCT_MODEL", "model");
     define("PRODUCT_TYPEPRODUCT", "typeproduct");
-    define("PRODUCT_SERIAL", "serial");
+    define("PRODUCT_SERIAL", "numserie");
     define("TYPEPRODUCT_ID", "id");
     define("TYPEPRODUCT_DESCRIPTION", "description");
 
@@ -31,7 +31,7 @@
                 //$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             }
             catch(PDOException $e){
-                $this->error = "Error en la conexión: ".$e.getMessage();
+                $this->error = "Error en la conexión: ".$e->getMessage();
                 $this->conn = null;
             }
         }
@@ -62,6 +62,12 @@
             if(!$result){
                 $this->error = "Error en la consulta de datos";
             }
+
+            return $result;
+        }
+
+        public function prepare($sql){
+            $result = $this->conn->prepare($sql);
 
             return $result;
         }
