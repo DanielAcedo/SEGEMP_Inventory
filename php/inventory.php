@@ -24,7 +24,7 @@
     }
     //There is data
     else{
-        echo "<table border='1'>";
+        echo "<table border='1' style='width:100%'>";
         echo "<tr>";
 
         //Draw header row
@@ -63,6 +63,10 @@
                 }
             }
 
+            echo '<td><form action="deleteproduct.php" method="POST">'.
+            '<input type="hidden" name="id" value="'.$product[PRODUCT_ID].'"/>'.
+            '<input type="image" src="../img/trashcan.png" width="32" height="32" alt="Borrar"/></form>';
+
             echo "</tr>";
             
         }
@@ -71,3 +75,5 @@
     }
 
     $app->footer();
+
+    ?>

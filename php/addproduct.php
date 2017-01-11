@@ -17,24 +17,28 @@
             $typeproduct = $_POST['typeproduct'];
             $serial = $_POST["serial"];
 
-            $sqlSelectTPID = "SELECT ".TYPEPRODUCT_ID." FROM ".TABLE_TYPEPRODUCT." WHERE ".TYPEPRODUCT_DESCRIPTION."=\"".$typeproduct."\"";
-            $statement = $app->getDao()->executeSelect($sqlSelectTPID);
-            
-            $typeproduct_id = $statement->fetch()[0];
-
-            $sql_insert = "INSERT INTO ".TABLE_PRODUCT." (".PRODUCT_MODEL.", ".PRODUCT_TYPEPRODUCT.", ".PRODUCT_SERIAL.
-            ") VALUES (:model, :typeproduct, :serial)";
-
-            $statement = $app->getDao()->prepare($sql_insert);
-            $statement->bindParam(":model", $model);
-            $statement->bindParam(":typeproduct", $typeproduct_id);
-            $statement->bindParam(":serial", $serial);
-            $statement->execute();
-
-            if($statement){
-                $app->goToInventory();
+            if(checkContainsProduct($model, $typeproduct, $serial)){
+                echo "El producto ya existe";
             }else{
-                echo "Error";
+                $sqlSelectTPID = "SELECT ".TYPEPRODUCT_ID." FROM ".TABLE_TYPEPRODUCT." WHERE ".TYPEPRODUCT_DESCRIPTION."=\"".$typeproduct."\"";
+                $statement = $app->getDao()->executeSelect($sqlSelectTPID);
+            
+                $typeproduct_id = $statement->fetch()[0];
+
+                $sql_insert = "INSERT INTO ".TABLE_PRODUCT." (".PRODUCT_MODEL.", ".PRODUCT_TYPEPRODUCT.", ".PRODUCT_SERIAL.
+                ") VALUES (:model, :typeproduct, :serial)";
+
+                $statement = $app->getDao()->prepare($sql_insert);
+                $statement->bindParam(":model", $model);
+                $statement->bindParam(":typeproduct", $typeproduct_id);
+                $statement->bindParam(":serial", $serial);
+                $statement->execute();
+
+                if($statement){
+                    $app->goToInventory();
+                }else{
+                    echo "Error";
+                }
             }
 
     }
@@ -73,4 +77,19 @@
     
 
     $app->footer();
+
+    function checkContainsProduct($productModel, $productTypeproduct, $productSerial){
+        global $app;
+
+        $sqlExistsProduct = "SELECT * FROM ".TABLE_PRODUCT." WHERE ".PRODUCT_MODEL."='".$productModel."' OR ".PRODUCT_SERIAL." = '".$productSerial."'";
+        $existsStatement = $app->getDao()->executeSelect($sqlExistsProduct);
+        $product = $existsStatement->fetch();
+
+        if($product){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 ?>
